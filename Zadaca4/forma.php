@@ -1,4 +1,4 @@
-65<?php 
+<?php 
 if (isset($_GET['id']))
 	    $id = $_GET['id'];
 if (isset($_GET['komentar_id']))

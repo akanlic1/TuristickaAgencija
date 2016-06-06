@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2016 at 04:14 PM
+-- Generation Time: Jun 06, 2016 at 10:28 PM
 -- Server version: 5.1.73-community
 -- PHP Version: 5.5.12
 
@@ -19,6 +19,57 @@ SET time_zone = "+00:00";
 --
 -- Database: `wtbaza`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `komentari`
+--
+
+CREATE TABLE IF NOT EXISTS `komentari` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `autor_id` int(11) DEFAULT NULL,
+  `novost_id` int(11) NOT NULL,
+  `tekst` text CHARACTER SET utf8 COLLATE utf8_slovenian_ci NOT NULL,
+  `vrijeme` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `procitano` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci AUTO_INCREMENT=14 ;
+
+--
+-- Dumping data for table `komentari`
+--
+
+INSERT INTO `komentari` (`id`, `autor_id`, `novost_id`, `tekst`, `vrijeme`, `procitano`) VALUES
+(7, NULL, 11, 'Komentar', '2016-06-06 09:39:06', 1),
+(8, 2, 11, 'Komentar', '2016-06-06 09:52:14', 1),
+(10, NULL, 12, 'Komentar\r\n', '2016-06-06 11:31:41', 0),
+(11, NULL, 12, 'Komentar', '2016-06-06 11:32:09', 0),
+(12, 3, 12, 'komentar', '2016-06-06 13:09:17', 0),
+(13, 3, 12, 'komentar', '2016-06-06 13:09:30', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `korisnici`
+--
+
+CREATE TABLE IF NOT EXISTS `korisnici` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(45) CHARACTER SET latin1 NOT NULL,
+  `password` char(32) CHARACTER SET latin1 NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `korisnici`
+--
+
+INSERT INTO `korisnici` (`id`, `username`, `password`) VALUES
+(1, 'azra', '5f4dcc3b5aa765d61d8327deb882cf99'),
+(2, 'izy', '5f4dcc3b5aa765d61d8327deb882cf99'),
+(3, 'aida', '5f4dcc3b5aa765d61d8327deb882cf99'),
+(12, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99');
 
 -- --------------------------------------------------------
 
@@ -43,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `novosti` (
 --
 
 INSERT INTO `novosti` (`id`, `naslov`, `tekst`, `autor_id`, `vrijeme`, `slika`, `komentarisanje`) VALUES
-(1, 'Posjetite Pariz - grad ljubavi, svjetlosti, umjetnosti i kulture', 'Pariz? Grad svjetla, mode, kulture, romantike, provoda i odlične kuhinje nije samo francuska, nego i istinska kozmopolitska prijestolnica! Već desetljećima očarava posjetitelje svojim znamenitostima, ali ni dalje ne gubi na popularnosti te ga milijuni turista svake godine čine jednim od najposjećenijih svjetskih odredišta.\r\n| \r\nOtkud zapravo početi? Možda najbolje u caféu s croissantom i francuskim doručkom, njime jutro dobiva pravi domaći štih. S razgledavanjem grada je najbolje krenuti s Ile de la Cité, otoka na rijeci Seini na kojem se nalazi Notre Dame de Paris, jedan od glavnih pariških simbola. Legenda kaže da je biskup imao viziju o najljepšoj gradskoj katedrali te ju je nacrtao u blatu pokraj budućeg gradilišta. Zamišljeno, ostvareno, i to u 12. stoljeću, istinsko gotičko remek-djelo. Glas o njezinoj ljepoti i jedinstvenim skulpturama pročuo se po cijeloj Francuskoj, a svoju popularnost je najviše stekla romanom ''Zvonar crkve Notre Dame''.\r\n\r\nKoliko značenje ova katedrala ima za grad, dokazuje i Point zéro, glavna polazišna točka otkud se mjere udaljenosti za sve francuske ceste, a nalazi se na trgu ispred crkve. U neposrednoj blizini je i Sainte Chappelle, predivna crkva s plavim svodovima i obojenim vitrajima, koju je najljepše vidjeti kad je sunčan dan jer onda pokazuje svu svoju raskoš. Njena pak legenda kaže da je sagrađena kako bi se u njoj čuvala Kristova kruna od trnja i dio križa.', 2, '2016-06-04 16:56:08', 'http://www.globo-travel.com/files/products/1590/pari.jpg', 0),
+(1, 'Posjetite Pariz - grad ljubavi, svjetlosti, umjetnosti i kulture', 'Pariz? Grad svjetla, mode, kulture, romantike, provoda i odlične kuhinje nije samo francuska, nego i istinska kozmopolitska prijestolnica! Već desetljećima očarava posjetitelje svojim znamenitostima, ali ni dalje ne gubi na popularnosti te ga milijuni turista svake godine čine jednim od najposjećenijih svjetskih odredišta.\r\n| \r\nOtkud zapravo početi? Možda najbolje u caféu s croissantom i francuskim doručkom, njime jutro dobiva pravi domaći štih. S razgledavanjem grada je najbolje krenuti s Ile de la Cité, otoka na rijeci Seini na kojem se nalazi Notre Dame de Paris, jedan od glavnih pariških simbola. Legenda kaže da je biskup imao viziju o najljepšoj gradskoj katedrali te ju je nacrtao u blatu pokraj budućeg gradilišta. Zamišljeno, ostvareno, i to u 12. stoljeću, istinsko gotičko remek-djelo. Glas o njezinoj ljepoti i jedinstvenim skulpturama pročuo se po cijeloj Francuskoj, a svoju popularnost je najviše stekla romanom ''Zvonar crkve Notre Dame''.\r\n\r\nKoliko značenje ova katedrala ima za grad, dokazuje i Point zéro, glavna polazišna točka otkud se mjere udaljenosti za sve francuske ceste, a nalazi se na trgu ispred crkve. U neposrednoj blizini je i Sainte Chappelle, predivna crkva s plavim svodovima i obojenim vitrajima, koju je najljepše vidjeti kad je sunčan dan jer onda pokazuje svu svoju raskoš. Njena pak legenda kaže da je sagrađena kako bi se u njoj čuvala Kristova kruna od trnja i dio križa.', 2, '2016-06-04 16:56:08', 'http://www.globo-travel.com/files/products/1590/pari.jpg', 1),
 (2, 'Šoping u Njujorku ?', 'Za Britance, Nemce, Skandinavce... odlazak do američke prestonice trgovine i najvećeg grada u SAD postao je uobičajeni način kupovine. Osim ogromne uštede novca, koja je zavidna i uz plaćenu povratnu avionsku kartu i noćenja u hotelu, šoping u Njujorku pruža i neizmerno zadovoljstvo boravka u najzavodljivijem gradu na planeti.', 2, '2016-06-04 16:57:05', 'http://www.vijesti.me/media/cache/67/23/6723a529770ec7f7b6af8862a5694d6e.jpg', 1),
 (3, 'Maldivi, romantična destinacija za potpuni odmor', 'Ako ste zamišljali mjesto gdje ćete možda pobjeći sa svojom boljom polovicom, ali mislimo stvarno pobjeći, mjesto gdje vas nitko neće moći zezati i dosađivati vam, tada ste sigurno više puta pomislili na Maldive.Maldivi su poznati kao otočna država u Indijskom oceanu i to jugozapadno od Indijskog poluotoka.Maldivi su poznati kao područje topline i vlage gdje hladni povjetarac razbija dosadu koju donosi vrućina.Ono što je većina mogla primjetiti kako su bogati kulturom.', 2, '2016-06-04 16:58:40', 'http://zenstvena.com/wp-content/uploads/2015/02/maldivi-putovanje.jpg', 0),
 (4, 'Otok Kecil, jedan od čarobnih otoka', 'Na sjeveroistočnoj strani Malajskoj poluotoka smjestili su se pravi rajski otoci koji jednostavno oduzimaju dah. Perhentianski otoci se nalaze među top destinacijama koji svake godine privuku velik broj zaljubljenika u tropske krajeve. Pješčane plaže i misterozno plavetnilo pravi su mamac za mnoge turiste.Kecil je stvoren za one koji vole tulumariti i koji na svom godišnjem odmoru ne žele veći dio vremena provesti samo u izležavanju.', 1, '2016-06-04 16:59:20', 'http://www.putokosvijeta.com/wp-content/uploads/2014/03/otok-kecil.jpg', 0),
@@ -55,6 +106,29 @@ INSERT INTO `novosti` (`id`, `naslov`, `tekst`, `autor_id`, `vrijeme`, `slika`, 
 (11, 'Filipini, destinacija raznih kultura', 'Filipini su poznati kao destinacija s nevjerojatnom kombinacijom raznih kultura, tradicija i znamenitosti. Pored prekrasnih plaža na čuvenom Palawanu, Filipini nude brojne druge atrakcije kao što su terase rižinih polja smještene na obroncima planine. Radi se o turističkoj destinaciji koju čini oko 7.000 otoka, a koja svoje bogate pakete sadržaja obogaćuje raznim uslugama.Svaki predio Filipina nudi sadržaje za svaku dobnu skupinu za one koji se žele samo opuštati i avanturiste koji žele malo bolje upoznati otoke..', 1, '2016-06-04 17:03:24', 'http://www.putokosvijeta.com/wp-content/uploads/2014/02/praia-de-rocha.jpg', 1),
 (12, 'Otok Palawan - raj na Filipinima', 'Na sjevernom dijelu Filipina smjestio se Palawan, poznat kao otok kojeg odlikuju besprijekorne i neodoljive plaže te nevjerojatne lokacije za ronjenje i istraživanje tropske prašume. Otok se smjestio između Južnokineskog mora i mora Sulu na kojem se nalazi zaštićeno mjesto Svjetske baštine UNESCO-a s najdubljom plovnom podzmenom rijekom.Na otoku se nalazi jedinstvena lepeza flore i faune, ekološkog, biološkog i morskog života uključujući i ugrožene dugong', 1, '2016-06-04 17:04:50', 'http://www.putokosvijeta.com/wp-content/uploads/2013/05/plaza-na-otoku2.jpg', 1),
 (13, 'Barbados, suncem okupana zemlja', 'Vjerojatno će se većina složiti kako su Karibi jedno od najljep&scaron;ih mjesta na cijelom planetu. Njihova raznovrsna ponuda po pitanju rajskih plaža te neodoljive okolice stavlja ih u sam vrh. Barbados su jo&scaron; jedan dokaz svemu navedenom, budući da se po mnogima radi o suncem okupanoj zemlji. Kristalni pijesak, mno&scaron;tvo laguna i ljubazni domaćini samo su dio čarobne ponude.To je tropski otok u čijoj unutra&scaron;njosti postoji bujna vegetcija i brojne močvare dok je obala rezervirana za tirkizne oaze okupane suncem.', 3, '2016-06-06 13:08:23', 'http://www.putokosvijeta.com/wp-content/uploads/2013/09/plaza-na-barbadosu.jpg', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `odgovori`
+--
+
+CREATE TABLE IF NOT EXISTS `odgovori` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `komentar_id` int(11) NOT NULL,
+  `autor_id` int(11) DEFAULT NULL,
+  `tekst` text CHARACTER SET utf8 COLLATE utf8_slovenian_ci NOT NULL,
+  `vrijeme` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `odgovori`
+--
+
+INSERT INTO `odgovori` (`id`, `komentar_id`, `autor_id`, `tekst`, `vrijeme`) VALUES
+(4, 7, 2, 'odgovor', '2016-06-06 09:52:28'),
+(6, 10, NULL, 'jos jedan odgovor', '2016-06-06 11:32:03');
 
 --
 -- Constraints for dumped tables
